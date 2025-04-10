@@ -23,7 +23,7 @@ class ColorFilter extends Filter {
           red: pixels[i],
           green: pixels[i + 1],
           blue: pixels[i + 2],
-          alpha: pixels[i + 3]);
+          alpha: i + 3 != pixels.length ? pixels[i + 3] : 0);
       for (ColorSubFilter subFilter in subFilters) {
         color = subFilter.applyFilter(color);
       }
