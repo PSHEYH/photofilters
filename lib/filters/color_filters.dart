@@ -30,7 +30,9 @@ class ColorFilter extends Filter {
       pixels[i] = color.red;
       pixels[i + 1] = color.green;
       pixels[i + 2] = color.blue;
-      pixels[i + 3] = color.alpha;
+      if (i + 3 != pixels.length) {
+        pixels[i + 3] = color.alpha;
+      }
     }
   }
 
