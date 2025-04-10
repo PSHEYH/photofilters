@@ -21,15 +21,19 @@ class ColorFilter extends Filter {
     for (int i = 0; i < pixels.length; i += 4) {
       RGBA color = RGBA(
           red: pixels[i],
-          green: pixels[i + 1],
-          blue: pixels[i + 2],
+          green: i + 1 != pixels.length ? pixels[i + 1] : 0,
+          blue: i + 2 != pixels.length ? pixels[i + 2] : 0,
           alpha: i + 3 != pixels.length ? pixels[i + 3] : 0);
       for (ColorSubFilter subFilter in subFilters) {
         color = subFilter.applyFilter(color);
       }
       pixels[i] = color.red;
-      pixels[i + 1] = color.green;
-      pixels[i + 2] = color.blue;
+      if (i + 1 != pixels.length) {
+        pixels[i + 1] = color.green;
+      }
+      if (i + 2 != pixels.length) {
+        pixels[i + 2] = color.blue;
+      }
       if (i + 3 != pixels.length) {
         pixels[i + 3] = color.alpha;
       }
